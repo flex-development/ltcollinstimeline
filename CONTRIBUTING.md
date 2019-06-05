@@ -31,7 +31,24 @@ Follow the steps below to get your development enviroment set up.
 
 ## Making Changes
 
-**Attention: This section is under construction.**
+This project is built with [Preact][1], a smaller alternative to [React][2].
+
+To begin making changes, run the command `npm run dev` in your terminal.  
+This command will compile both your JSX and Sass files.
+
+[1]: https://preactjs.com/
+[2]: https://reactjs.org/
+
+**Component Development**
+
+This project uses [Storybook][3], an open source tool for developing UI components in isolation for React, Vue, and Angular. Storybook allows us to not only develop standalone components, but document and test our components as well. 
+
+We followed [this guide][4] to set up Storybook with Preact.
+
+To view our stories, run `npm run storybook` in your project directory.
+
+[3]: https://storybook.js.org/
+[4]: https://storybook.js.org/docs/guides/guide-preact/
 
 ## Documentation
 
@@ -57,12 +74,10 @@ When the server is ready, navigate to `http://localhost:8080` in view the projec
 
 ## Making a Pull Request
 
-**
-Note: Before creating a new branch and pull request for your
+**Note: Before creating a new branch and pull request for your
 changes, your build must pass all the tests and must work locally. If you need help, please create a
 test file and leave a comment in the test body, making note of any issues in
-their respective files. Make sure to label your pull request "help wanted."
-**
+their respective files. Make sure to label your pull request "help wanted."**
 
 If you're ready to have your changes reviewed, make sure your code is well
 documented, and create a branch for your changes. 
