@@ -1,0 +1,18 @@
+// ----------------------------------------------------------------------------
+// Hero specific styles, variables, placeholders, mixins and functions
+// @see components/organisms/Hero.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Variables
+$hero-height: size(500)
+$hero-width: 100vw
+$widescreen-hero-height: size(675)
+
+// Default hero style
+// 1. Set height x width to 31.25rem x 100vw
+// 2. Adjust height on larger screens
+.ado-hero
+  +size($hero-width, $hero-height)
+  +respond-to($breakpoint-xxlarge, min)
+    height: $widescreen-hero-height

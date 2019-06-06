@@ -1,8 +1,14 @@
 # Diamondback Special Project: Lt. Collins Timeline
 
-The Lt. Collins Timeline is a Diamondback special project created with the goal of highlighting not only the events leading up to the Lieutenant's death, but what the University has done since his untimely passing to address campus hate crimes and promote an environment where students of all backgrounds feel safe and accepted. Moreover, we'd like to emphasize how tragic Collins' death is, and just how ostracized students of color on UMD's campus feel.
+The Lt. Collins Timeline is a Diamondback special project created with the goal
+of highlighting not only the events leading up to the Lieutenant's death, but
+what the University has done since his untimely passing to address campus hate
+crimes and promote an environment where students of all backgrounds feel safe
+and accepted. Moreover, we'd like to emphasize how tragic Collins' death is, and
+just how ostracized students of color on UMD's campus feel.
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style
+Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Overview
 
@@ -14,9 +20,20 @@ The Lt. Collins Timeline is a Diamondback special project created with the goal 
 
 ## Getting Started
 
-On the night of May 19, 2017, two days away from graduation, 2nd Lt. Richard Collins was stabbed to death on the University of Maryland's campus while waiting for his Uber. Two years later, former student Sean Urbanski is is awaiting trial on hate crime and murder charges in connection Collins' death, and is set is to go to trial July 22nd, 2019. 
+On the night of May 19, 2017, two days away from graduation, 2nd Lt. Richard
+Collins was stabbed to death on the University of Maryland's campus while
+waiting for his Uber. Two years later, former student Sean Urbanski is is
+awaiting trial on hate crime and murder charges in connection Collins' death,
+and is set is to go to trial July 22nd, 2019.
 
-Even before Collins' death, racial tensions have been high at the University, with several hate crimes dirtying the University's history. The Lt. Collins Timeline is a special project created with the goal of highlighting not only the events leading up to the Lieutenant's death, but what the University has done since his untimely passing to address campus hate crimes and promote an environment where students of all backgrounds feel safe and accepted. Moreover, we'd like to emphasize how tragic Collins' death is, and just how ostracized students of color on UMD's campus feel.
+Even before Collins' death, racial tensions have been high at the University,
+with several hate crimes dirtying the University's history. The Lt. Collins
+Timeline is a special project created with the goal of highlighting not only the
+events leading up to the Lieutenant's death, but what the University has done
+since his untimely passing to address campus hate crimes and promote an
+environment where students of all backgrounds feel safe and accepted. Moreover,
+we'd like to emphasize how tragic Collins' death is, and just how ostracized
+students of color on UMD's campus feel.
 
 ## Usage
 
@@ -34,6 +51,9 @@ our deployment procedure, please view our [Deployment Guide](DEPLOYMENT.md).
 
 ## Built With
 
-- [Adobe XD](https://www.adobe.com/products/xd.html) - Software for designing and prototyping user experiences
-- [Preact.js](https://preactjs.com/) - JavaScript library for building user interfaces
-- [Storybook](https://storybook.js.org/) - Open source tool for developing UI components in isolation
+- [Adobe XD](https://www.adobe.com/products/xd.html) - Software for designing
+  and prototyping user experiences
+- [Preact.js](https://preactjs.com/) - JavaScript library for building user
+  interfaces
+- [Storybook](https://storybook.js.org/) - Open source tool for developing UI
+  components in isolation

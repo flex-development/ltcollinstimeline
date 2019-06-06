@@ -1,0 +1,18 @@
+//// ---------------------------------------------------------------------------
+/// This file contains all application-wide Sass placeholders.
+//// ---------------------------------------------------------------------------
+
+/// Make an element full screen
+/// @requires {mixin} size
+%ui-full
+  +size(100vw, 100vh)
+
+/// Make a element not transparent
+/// @requires {mixin} opacity
+%ui-not-transparent
+  +opacity(1)
+
+/// Make an element transparent
+/// @requires {mixin} opacity
+%ui-transparent
+  +opacity(0)

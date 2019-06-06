@@ -1,0 +1,20 @@
+// ----------------------------------------------------------------------------
+// Button specific styles, variables, placeholders, mixins and functions
+// @see components/atoms/Button.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Default button
+// 1. Style &:hover, &:active, &:focus -> add cursor and increase font weight
+// 2. Center button elements side by side
+// 3. Target disabled buttons
+.ada-button
+  +event
+    cursor: pointer
+    font-weight: 600
+
+
+  +flex(row, center, center)
+
+  &:disabled
+    background-color: $light-grey

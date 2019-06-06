@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "preact-cli/babel",
+      {
+        "modules": "commonjs"
+      }
+    ]
+  ],
+  "ignore": [
+    "**/node_modules/**"
+  ]
+}
