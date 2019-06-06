@@ -25,7 +25,8 @@ local machine.
 
 Follow the steps below to get your development enviroment set up.
 
-1. Open the terminal and and run the following: `git clone  https://github.com/The-Diamondback-Lab/ltcollinstimeline.git`.
+1. Open the terminal and and run the following: `git clone
+   https://github.com/The-Diamondback-Lab/ltcollinstimeline.git`.
 
 2. Run `npm install` to install the project dependencies.
 
@@ -39,9 +40,12 @@ This command will compile both your JSX and Sass files.
 [1]: https://preactjs.com/
 [2]: https://reactjs.org/
 
-**Component Development**
+**Component Development**  
 
-This project uses [Storybook][3], an open source tool for developing UI components in isolation for React, Vue, and Angular. Storybook allows us to not only develop standalone components, but document and test our components as well. 
+This project uses [Storybook][3], an open source tool for developing UI
+components in isolation for React, Vue, and Angular. Storybook allows us to not
+only develop standalone components, but document and test our components as
+well.
 
 We followed [this guide][4] to set up Storybook with Preact.
 
@@ -80,10 +84,10 @@ test file and leave a comment in the test body, making note of any issues in
 their respective files. Make sure to label your pull request "help wanted."**
 
 If you're ready to have your changes reviewed, make sure your code is well
-documented, and create a branch for your changes. 
+documented, and create a branch for your changes.
 
-Make sure to name the branch
-appropriately, prefixing it with `<your_initials>/`, then `feature-`, `issue-`, `hotfix-`, or `release-`.
+Make sure to name the branch appropriately, prefixing it with
+`<your_initials>/`, then `feature-`, `issue-`, `hotfix-`, or `release-`.
 
 To do this, run the following in your terminal:  
 

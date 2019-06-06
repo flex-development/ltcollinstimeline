@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "name": "salaryguidereloaded",
+  "public": true,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)\\.(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
+      "dest": "/$1.$2.$3.$4.$5"
+    },
+    {
+      "src": "/(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
+      "dest": "/$1.$2.$3.$4"
+    },
+    {
+      "src": "/(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
+      "dest": "/$1.$2.$3"
+    },
+    {
+      "src": "/(.*)\\.(js|css|json|ttf|map|png|ico|json)$",
+      "dest": "/$1.$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

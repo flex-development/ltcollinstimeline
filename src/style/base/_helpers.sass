@@ -1,0 +1,22 @@
+/// ----------------------------------------------------------------------------
+/// This file contains helper classes.
+/// ----------------------------------------------------------------------------
+
+/// Fullscreen
+/// 1. Make element as tall as the viewport
+/// 2. Make element as wide as the viewport
+.ui-full
+  @extend %ui-full
+
+/// Make an element invisible
+/// 1. Make element transparent
+/// 2. Hide the element
+.ui-hide
+  @extend %ui-transparent
+
+  display: none
+
+/// Make an element visible
+/// 1. Make element not transparent
+.ui-show
+  @extend %ui-not-transparent
