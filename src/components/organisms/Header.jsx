@@ -3,7 +3,13 @@ import { h, Component } from 'preact'
 import $ from 'jquery'
 
 // Components
-import { Container } from '../atoms'
+import { Container, Image, ScrollToTopButton } from '../atoms'
+
+// Utilities
+import { toggle_on_scroll } from '../../utilities/ui.utilities'
+
+// Images
+import logo_light from '../../assets/images/logo-mini-light.png'
 
 /**
  * Class representing the header.
@@ -13,12 +19,33 @@ import { Container } from '../atoms'
  */
 export default class Header extends Component {
   /**
-   * Attaches a scroll listener to the window when the component mounts.
+   * @namespace state - Component state
+   * @property {boolean} state.scrolled True if user has scrolled past 90% of
+   * the hero
+   */
+  state = { scrolled: false }
+
+  /**
+   * Attaches a scroll listener to the window after user has scrolled past the
+   * 90% of hero.
    *
    * @returns {undefined}
    */
   componentDidMount() {
-    $(window).scroll(() => this.handle_window_scroll())
+    const class_name = 'ui-sticky'
+    const header = '.ado-header'
+    const scroll_top = $(window).scrollTop()
+    const hero = $('.ado-hero')
+    const hero_height = hero.outerHeight()
+
+    if (scroll_top >= (hero_height * 0.90)) {
+      this.setState({ scrolled: true })
+      $(window).scroll(() => toggle_on_scroll(header, class_name))
+    } else {
+      this.setState({ scrolled: false })
+      $(header).removeClass(class_name)
+      $(window).off('scroll')
+    }
   }
 
   /**
@@ -28,67 +55,40 @@ export default class Header extends Component {
    */
   componentWillUnmount() {
     // Remove scroll window listener
-    $(window).off('scroll')
+    if (this.state.scrolled) $(window).off('scroll')
   }
 
   /**
    * Renders a header with the base class 'ado-header'.
    *
-   * If props.container is defined, props.children will be wrapped in a
-   * container element with the base class 'ada-container'.
-   *
-   * Pass an empty object for the default container, or defined
-   * props.container.id and/or props.container.classes for greater control.
+   * Features the DBK logo and a dropdown navigation, centered across from each
+   * other.
    *
    * @param {object} props - Component properties
    * @param {string} props.class - Space delimitted list of extra classes
    * @param {string} props.id - Element id
-   * @param {*} props.children - Footer elements
-   * @param {object} props.container - If defined, wrap children in container
-   * @param {string} props.container.id - Container element id
-   * @param {string} props.container.classes - Extra container classes
+   * @param {boolean} props.app_ready - True if application has loaded all
+   * content
    * @param {object} state - Component state
-   * @returns {HTMLDivElement}
+   * @returns {HTMLElement} HTML header element
    */
   render(props, state) {
     const style = (`ado-header ${props.class ? props.class : ''}`).trim()
-    const { id, children, container } = props
+    const { id, page_ready } = props
 
     return (
       <header id={id} class={style}>
-        {
-          container
-            ? <Container props={{
-              container: typeof container === 'boolean' ? {} : { ...container },
-              children: children
-            }} />
-            : { children }
-        }
+        <Container>
+          <ScrollToTopButton disabled={page_ready} class='ui-borderless'>
+            <Image src={logo_light} alt='DBK logo' />
+          </ScrollToTopButton>
+
+          {/*
+            TODO: Add dropdown navigation
+            <Navigation />
+          */}
+        </Container>
       </header>
     )
-  }
-
-  // Helpers
-
-  /**
-   * On scroll, the header will have the class ui-sticky to it once the user has
-   * scrolled past 75% of the hero's outer height.
-   *
-   * When the user scrolls back to the top, the class will be removed.
-   *
-   * @returns {undefined}
-   */
-  handle_window_scroll = () => {
-    const class_name = 'ui-sticky'
-    const header = $('.ado-header')
-    const hero = $('.ado-hero')
-    const hero_height = hero.outerHeight()
-    const scroll_top = $(window).scrollTop()
-
-    if (scroll_top === 0) {
-      header.removeClass(class_name)
-    } else if (scroll_top > (hero_height * 0.75)) {
-      header.addClass(class_name)
-    }
   }
 }

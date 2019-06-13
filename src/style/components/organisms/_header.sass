@@ -4,8 +4,24 @@
 // @author Lexus Drumgold
 // ----------------------------------------------------------------------------
 
-// Default footer style
-// 1. Make inner container the full height of the header
+// Variables
+$header-width: 100vw
+$header-height: size(190)
+
+// Styles
+
+// Position header absolutely
+// Set width 100vw and height (190 / 16)rem
+// Position header on top of the other content
+// Center header contents on opposite sites of the header
+// Make inner container the height of the content
 .ado-header
+  +absolute(0, null, null, 0)
+  +size($header-width, $header-height)
+
+  z-index: 5
+
   > .ada-container
-    height: 100%
+    +flex(row, center, space-between)
+
+    height: max-content

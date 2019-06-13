@@ -33,7 +33,7 @@ export default class App extends Component {
   render(props, state) {
     return (
       <Fragment>
-        <Header container />
+        <Header />
         {/* TODO: Implement user interface */}
         <Footer container />
       </Fragment>

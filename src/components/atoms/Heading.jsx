@@ -8,7 +8,6 @@ import { h, Component } from 'preact'
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 export default class Heading extends Component {
-
   /**
    * Renders a heading element with the base class 'ada-heading'.
    *
