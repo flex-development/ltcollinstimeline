@@ -23,6 +23,7 @@ export default class Button extends Component {
    * @param {object} props - Component properties
    * @param {boolean} props.disabled - If button is disabled or not
    * @param {string} props.class - Space delimitted list of extra classes
+   * @param {object} props.events - Event functions
    * @param {string} props.id - Element id
    * @param {*} props.children - Inner children
    * @param {object} state - Component state
@@ -30,10 +31,10 @@ export default class Button extends Component {
    */
   render(props, state) {
     const style = (`ada-button ${props.class ? props.class : ''}`).trim()
-    const { children, disabled, id, onClick } = props
+    const { children, disabled, events, id } = props
 
     return (
-      <button id={id} class={style} disabled={disabled} onClick={onClick}>
+      <button id={id} class={style} disabled={disabled} {...events}>
         {children}
       </button>
     )
@@ -46,7 +47,7 @@ export default class Button extends Component {
  *
  * @extends Component
  */
-export class ScrollToTopButton extends Component {
+export class SmoothScrollButton extends Component {
   /**
    * @namespace state Component state
    * @property {number} state.speed - Animation speed in milliseconds
@@ -91,7 +92,7 @@ export class ScrollToTopButton extends Component {
    * @returns {HTMLButtonElement}
    */
   render(props, state) {
-    const style = (`scroll-to-top-btn ${props.class ? props.class : ''}`).trim()
+    const style = (`smooth-scroll-btn ${props.class ? props.class : ''}`).trim()
     const { disabled, children } = props
     const { target, speed } = state
 

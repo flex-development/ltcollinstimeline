@@ -28,7 +28,7 @@ export default class Footer extends Component {
    * @param {string} props.container.id - Container element id
    * @param {string} props.container.classes - Extra container classes
    * @param {object} state - Component state
-   * @returns {HTMLDivElement}
+   * @returns {HTMLElement} HTML <footer> element.
    */
   render(props, state) {
     const style = (`ado-footer ${props.class ? props.class : ''}`).trim()

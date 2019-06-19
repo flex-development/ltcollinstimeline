@@ -8,20 +8,15 @@
 $header-width: 100vw
 $header-height: size(190)
 
+// ! padding: size(76) 0 isn't working
+$header-padding: 2.5rem 0
+
 // Styles
 
-// Position header absolutely
 // Set width 100vw and height (190 / 16)rem
-// Position header on top of the other content
-// Center header contents on opposite sites of the header
-// Make inner container the height of the content
+// Add space oon the top and bottom of header
 .ado-header
-  +absolute(0, null, null, 0)
   +size($header-width, $header-height)
 
-  z-index: 5
-
-  > .ada-container
-    +flex(row, center, space-between)
-
-    height: max-content
+  background-color: $dark
+  padding: $header-padding

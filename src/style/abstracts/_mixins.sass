@@ -10,6 +10,16 @@
 =animation($name, $duration: 1.25s, $timing: ease, $delay: 0s)
   animation: $name $duration $timing $delay
 
+/// Set an element's width and max-width to the same value.
+/// @param {Number} $width - Element width and max-width
+/// @param {Number} $height [$width] - Element height
+=constrain($width)
+  @if $width == null
+    @error '$width parameter is required'
+
+  max-width: $width
+  width: $width
+
 /// Event wrapper for &:hover, &:active, &:focus
 /// @param {Bool} $self [false] - Whether or not to include current selector
 =event($self: false)
@@ -121,7 +131,6 @@
       #{'-' + $vendor + '-' + $property}: #{$value}
 
   #{$property}: #{$value}
-
 
 /// Media query mixin
 /// @param {Number} $breakpoint - Breakpoint value
