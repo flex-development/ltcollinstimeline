@@ -1,0 +1,64 @@
+// ----------------------------------------------------------------------------
+// Event page specific styles, variables, placeholders, mixins and functions
+// @see components/templates/Event.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+.adt-event
+  +size(max-content)
+
+  background-color: $white
+  margin: size(60) 0
+
+.event-connector
+  +size(size(122), size(1))
+
+  border-top: size(3) solid $light-gray
+
+.event-content
+  +size(size(536), auto)
+
+  border: size(3) solid $black
+  border-radius: size(5)
+  padding: size(30) size(20)
+  margin: 0 auto
+
+.event-date,
+.event-description,
+.event-link,
+.event-name
+  margin: size(5) 0
+
+.event-date,
+.event-link
+  color: $accent-med
+  font-size: size(12)
+  font-weight: 500
+
+  margin
+
+.event-date
+  margin-top: 0
+  text-transform: uppercase
+
+.event-name
+  +respond-to($breakpoint-xxl, min)
+    font-size: size(20)
+
+
+  color: $dark
+  font-size: size(16)
+  font-weight: 600
+
+.event-description
+  color: $dark-gray
+  font-size: size(14)
+
+.event-link
+  +flex(row, center)
+
+  font-style: italic
+  margin-bottom: 0
+
+  > .ada-icon
+    color: $medium-gray

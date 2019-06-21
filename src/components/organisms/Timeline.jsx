@@ -35,7 +35,7 @@ export default class Timeline extends Component {
           <TimelineColumn class='ui-left ui-stretch' events={campus} />
           <div class='timeline-divider ui-stretch' />
           <TimelineColumn
-            id={'legal'} class='ui-left ui-stretch' events={legal}
+            id={'legal'} class='ui-right ui-stretch' events={legal}
           />
         </Container>
       </section>

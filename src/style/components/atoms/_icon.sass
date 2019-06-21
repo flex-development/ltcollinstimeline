@@ -6,35 +6,35 @@
 
 // Variables
 
-/// Font Awesome icon styles - brand, light, regular, and solid
-/// @type List
-$icon-styles: fab, fal, far, fas
-
-/// Icons we're using in this project
-/// @type List
-$icons: chevron-down, history, image, link
-
-// Mixins
-
-/// Adds Font Awesome icon styles to our default icon
-=icon-styles
-  @each $style in $icon-styles
-    &.#{$style}
-      @extend .#{$style}
-
-// Default icon
+// Default icon style
 // 1. Add icons we're using
 // 2. Adds Font Awesome icon styles to our default icon
 // 3. Set default font size
 // 4. Add space around the icon
 .ada-icon
-  +icon-styles
-
-  @extend %fa-icon
-
-  font-size: size(22)
+  font-size: size(14) !important
   margin: size(8)
 
-  .history
-    &:before
-      content: fa-content($fa-var-history)
+  // Background color = Diamondback Blue
+  &.ui-accent-dark
+    color: $accent-dark
+
+  // Font color = Diamondback Red
+  &.ui-accent-med
+    color: $accent-med
+
+  // Font color = Diamondback Yellow
+  &.ui-accent-light
+    color: $accent-light
+
+  // Font color = Dark base color
+  &.ui-dark
+    color: $accent-dark
+
+  // Font color = Light base color
+  &.ui-light
+    color: $accent-light
+
+  // Font color = white
+  &.ui-white
+    color: $white

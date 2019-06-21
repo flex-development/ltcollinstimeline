@@ -1,8 +1,10 @@
 // Packages
 import { h, Component } from 'preact'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 
 // Components
-import { Icon, Link, Paragraph } from '../atoms'
+import { Link, Paragraph } from '../atoms'
 
 /**
  * Class representing a timeline event.
@@ -12,8 +14,7 @@ import { Icon, Link, Paragraph } from '../atoms'
  */
 export default class Event extends Component {
   /**
-   * Renders an <article> element with the base class 'adt-event'.
-   *
+   * Renders an <div> element with the base class 'adt-event'.
    *
    * @param {object} props - Component properties
    * @param {string} props.class - Space delimitted list of extra classes
@@ -26,33 +27,33 @@ export default class Event extends Component {
    * @param {string} props.name - Event name
    * @param {string} props.type - Event type
    * @param {object} state - Component state
-   * @returns {HTMLElement} HTML section element
+   * @returns {HTMLDivElement}
    */
   render(props, state) {
     const style = (`adt-event ${props.class ? props.class : ''}`).trim()
     const { date, description, feature, id, img, link, name, type } = props
 
-    const get_class_name = string => name ? `event-${name}` : ''
+    const get_class_name = string => string ? `event-${string}` : ''
 
     const image = img.low || img
 
     return (
-      <article
+      <div
         id={id} class={style}
-        data-feature={feature} data-type={type} data-img={image}
+        data-feature={feature} data-type={type} data-img={image.src}
       >
-        <div class={get_class_name('content')}>
+        <article class={get_class_name('content')}>
           <Paragraph class={get_class_name('date')}>{date}</Paragraph>
           <Paragraph class={get_class_name('name')}>{name}</Paragraph>
           <Paragraph class={get_class_name('description')}>
             {description}
           </Paragraph>
           <Link class={get_class_name('link')} {...link}>
-            <Icon name='link' /> {link.text}
+            <FontAwesomeIcon className='ada-icon' icon={faLink} /> {link.text}
           </Link>
-        </div>
+        </article>
         <div class={get_class_name('connector')} data-event={id} />
-      </article>
+      </div>
     )
   }
 }

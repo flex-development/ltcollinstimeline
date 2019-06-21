@@ -1,8 +1,10 @@
-// ----------------------------------------------------------------------------
-// Timeline specific styles, variables, placeholders, mixins and functions
-// @see components/organisms/Timeline.jsx
-// @author Lexus Drumgold
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
+/// Timeline specific styles, variables, placeholders, mixins and functions
+/// @see components/organisms/Timeline.jsx
+/// @author Lexus Drumgold
+/// ----------------------------------------------------------------------------
+
+// Style
 
 // Main timeline component
 // 1. Make timeline component fullsize
@@ -10,3 +12,24 @@
   @extend %ui-full
 
   background-color: $light
+
+  > .ada-container
+    +flex(row, center)
+
+    height: 100%
+
+.timeline-col
+  +flex(column, center, space-between)
+
+  &.ui-left
+    > .adt-event
+      +flex(row, center, center)
+
+  &.ui-right
+    > .adt-event
+      +flex(row-reverse, center, center)
+
+.timeline-divider
+  +constrain(size(3))
+
+  background-color: $light-gray
