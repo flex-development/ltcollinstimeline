@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 import { BadRequest } from '@feathersjs/errors'
 
 // Utilities
-import { smooth_scroll } from '../../utilities/ui.utilities'
+import { smooth_scroll } from '../../utilities'
 
 /**
  * Button components.

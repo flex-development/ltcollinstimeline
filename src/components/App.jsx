@@ -92,7 +92,14 @@ export default class App extends Component {
   render(props, state) {
     return (
       <Fragment>
-        {/* TODO: Implement user interface */}
+        <Header container>
+          <SmoothScrollButton class='ui-borderless ui-transparent'>
+            <Image src={logo_light} alt='DBK mini logo light' />
+          </SmoothScrollButton>
+
+        </Header>
+        <Home />
+        <Footer />
       </Fragment>
     )
   }

@@ -77,6 +77,6 @@
 /// @return {Number}
 @function size($value, $unit: 'rem')
   @if $unit == 'em'
-    @return px-to-em($value)
+    @return value-to-em($value)
 
-  @return px-to-rem($value)
+  @return value-to-rem($value)

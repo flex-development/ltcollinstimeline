@@ -135,7 +135,7 @@ export const is_scrolled = (selector, value, target = window) => {
  * @returns {undefined}
  */
 export const smooth_scroll = (event, target = 'body', speed = 750) => {
-  $('html, body').animate({ scrollTop: target }, speed)
+  $('html, body').animate({ scrollTop: $(target) }, speed)
   if (process.env.NODE_ENV !== 'production') console.info('Smooth scrolled.')
   event.preventDefault()
 }

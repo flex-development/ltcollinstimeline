@@ -11,11 +11,12 @@ $widescreen-hero-height: size(900)
 
 // Styles
 
-// Set background image
 // Set width and height
 // Adjust height on larger screens
 .ado-hero
-  +set-bkg-img('hero.png')
   +size($hero-width, $hero-height)
-  +respond-to($breakpoint-xxlarge, min)
+  +respond-to($breakpoint-xxl, min)
     height: $widescreen-hero-height
+
+
+  background-color: $dark
