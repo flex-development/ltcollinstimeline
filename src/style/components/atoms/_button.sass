@@ -4,6 +4,12 @@
 // @author Lexus Drumgold
 // ----------------------------------------------------------------------------
 
+/// Variables
+
+/// Button component font sizes
+/// @type List
+$button-font-sizes: ('default': 16, 'xxl': 22)
+
 // Default button
 // 1. Style &:hover, &:active, &:focus -> add cursor and increase font weight
 // 2. Center button elements side by side
@@ -15,6 +21,39 @@
 
 
   +flex(row, center, center)
+  +respond-to($breakpoint-xxl, min)
+    font-size: size(map-get($button-font-sizes, xxl))
+
+
+  font-size: size(map-get($button-font-sizes, default))
 
   &:disabled
-    background-color: $light-grey
+    +set-bkg-color-and-hover($light-gray)
+
+  // Background color = Diamondback Blue
+  &.ui-accent-dark
+    +set-bkg-color-and-hover($accent-dark)
+
+  // Background color = Diamondback Red
+  &.ui-accent-med
+    +set-bkg-color-and-hover($accent-med)
+
+  // Background color = Diamondback Yellow
+  &.ui-accent-light
+    +set-bkg-color-and-hover($accent-light)
+
+  // Background color = Dark base color
+  &.ui-dark
+    +set-bkg-color-and-hover($dark)
+
+  // Background color = Light base color
+  &.ui-light
+    +set-bkg-color-and-hover($dark)
+
+  // Background color = transparent
+  &.ui-transparent
+    background-color: transparent
+
+  // Background color = white
+  &.ui-white
+    +set-bkg-color-and-hover($white)

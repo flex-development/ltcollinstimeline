@@ -4,4 +4,6 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-export { }
+import OptGroup from './OptGroup.jsx'
+
+export { OptGroup }

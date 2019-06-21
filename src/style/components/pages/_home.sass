@@ -1,0 +1,54 @@
+// ----------------------------------------------------------------------------
+// Home page specific styles, variables, placeholders, mixins and functions
+// @see components/page/Home.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Make page full width
+.adp-home
+  +size(100vw, auto)
+
+// Position header absolutely
+// Position header on top of the other content
+// Center header contents on opposite sites of the header
+// Make inner container the height of the content
+.ado-header
+  +absolute(0, null, null, 0)
+
+  z-index: 5
+
+  > .ada-container
+    +flex(row, center, space-between)
+
+    height: max-content
+
+    .smooth-scroll-btn
+      padding: 0
+
+      > .ada-image
+        +constrain(67.5%)
+
+// Set hero background image
+.ado-hero
+  +set-bkg-img('hero.png')
+
+  > .ada-container
+    +flex(row, center, center)
+
+    height: 100%
+
+// Target heading, paragraph, and button inside hero
+.hero-content
+  +constrain(65%)
+  +flex(column, center, center)
+
+  color: $white
+  text-align: center
+
+  > .smooth-scroll-btn
+    +set-bkg-color-and-hover($accent-med)
+
+    color: $white
+    border-radius: size(40)
+    padding: size(18) size(44)
+    margin-top: size(16)

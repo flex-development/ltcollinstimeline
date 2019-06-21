@@ -4,10 +4,14 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-import Button from './Button.jsx'
+import Button, { SmoothScrollButton } from './Button.jsx'
 import Container from './Container.jsx'
 import Heading from './Heading.jsx'
+import Image from './Image.jsx'
 import Link from './Link.jsx'
 import Paragraph from './Paragraph.jsx'
+import Option from './Option.jsx'
 
-export { Button, Container, Heading, Link, Paragraph }
+export {
+  Button, Container, Heading, Image, Link, Paragraph, Option, SmoothScrollButton
+}

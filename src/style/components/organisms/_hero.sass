@@ -5,14 +5,18 @@
 // ----------------------------------------------------------------------------
 
 // Variables
-$hero-height: size(500)
+$hero-height: 100vh
 $hero-width: 100vw
-$widescreen-hero-height: size(675)
+$widescreen-hero-height: size(900)
 
-// Default hero style
-// 1. Set height x width to 31.25rem x 100vw
-// 2. Adjust height on larger screens
+// Styles
+
+// Set width and height
+// Adjust height on larger screens
 .ado-hero
   +size($hero-width, $hero-height)
-  +respond-to($breakpoint-xxlarge, min)
+  +respond-to($breakpoint-xxl, min)
     height: $widescreen-hero-height
+
+
+  background-color: $dark

@@ -4,4 +4,7 @@
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
-export { }
+import Home from './Home.jsx'
+import Loading from './Loading.jsx'
+
+export { Home, Loading }
