@@ -3,7 +3,11 @@ import { h, Component } from 'preact'
 
 // Components
 import { Heading, Paragraph, SmoothScrollButton } from '../atoms'
-import { Hero } from '../organisms'
+import { Hero, Timeline } from '../organisms'
+
+// Event data
+import campus from '../../api/campus.events.json'
+import legal from '../../api/legal.events.json'
 
 /**
  * Preact component representing the homepage.
@@ -33,8 +37,7 @@ export default class Home extends Component {
             <br />
             —
             <br />
-            One one side, this dual timeline tracks <span>University events</span>, while on the other, the timeline follows the <span>
-              mechanics of the trial and other legal developments</span>.
+            One one side, this dual timeline tracks <span>University events</span>, while on the other, the timeline follows the <span>mechanics of the trial and other legal developments</span>.
           </Paragraph>
           <SmoothScrollButton
             class='ui-borderless ui-accent-med' target='#timeline-section-0'
@@ -42,10 +45,15 @@ export default class Home extends Component {
             Get Started
           </SmoothScrollButton>
         </Hero>
-        {/* Timeline */}
+        <Timeline events={{ campus: this.events(campus, 0, 2) }} />
         {/* Feature Event */}
-        {/* Timeline */}
+        <Timeline events={{
+          campus: this.events(campus, 2, campus.length),
+          legal: this.events(legal, 1, legal.length)
+        }} />
       </main>
     )
   }
+
+  events = (events, start, end) => events.slice(start, end)
 }
