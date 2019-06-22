@@ -1,5 +1,9 @@
 // Packages
 import { h, Component } from 'preact'
+import $ from 'jquery'
+
+// Context
+import { UIContext } from '../context'
 
 // Components
 import { Container } from '../atoms'
@@ -11,6 +15,22 @@ import { Container } from '../atoms'
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 export default class Header extends Component {
+  /**
+   * If this.props.sticky is true, the window will have a scroll listener
+   * attached. The header will have the class 'ui-sticky' added to it when the
+   * user has scrolled past 90% of the header, and removed and when the user has
+   * scrolled to the top of the page.
+   *
+   * @returns {undefined}
+   */
+  componentDidMount() {
+    const { sticky } = this.props
+
+    if (sticky) {
+
+    }
+  }
+
   /**
    * Renders a <header> element with the base class 'ado-header'.
    *
@@ -34,16 +54,22 @@ export default class Header extends Component {
     const style = (`ado-header ${props.class ? props.class : ''}`).trim()
     const { id, children, container } = props
 
+    const $el = $('.ado-header')
+
     return (
       <header id={id} class={style}>
-        {
-          container
-            ? <Container {...{
-              container: typeof container === 'boolean' ? {} : { ...container },
-              children: children
-            }} />
-            : { children }
-        }
+        <UIContext.Consumer>
+          {({ menu_open, mobile, scrolled }) => {
+            scrolled ? $el.addClass('ui-sticky') : $el.removeClass('ui-sticky')
+
+            if (!container) return children
+
+            const c_props = typeof container === 'boolean'
+              ? { children } : { ...container, children }
+
+            return <Container {...c_props} />
+          }}
+        </UIContext.Consumer>
       </header>
     )
   }

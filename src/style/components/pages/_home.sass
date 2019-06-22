@@ -26,20 +26,39 @@
       padding: 0
 
       > .ada-image
-        +constrain(67.5%)
+        +constrain(65%)
+
+  &.ui-sticky
+    background-color: $accent-med
+    padding: size(16) 0
+    position: fixed
+
+    > .ada-container
+      .smooth-scroll-btn
+        > .ada-image
+          +constrain(60%)
 
 // Set hero background image
 .ado-hero
   +set-bkg-img('hero.png')
 
   > .ada-container
-    +flex(row, center, center)
+    +flex(row, flex-end, center)
 
     height: 100%
 
 // Target heading, paragraph, and button inside hero
+
 .hero-content
-  +constrain(65%)
+  +flex(column, center, space-between)
+  +size(65%)
+
+.hero-content-main,
+.hero-content-footer
+  color: $white
+  text-align: center
+
+.hero-content-main
   +flex(column, center, center)
 
   color: $white
@@ -52,3 +71,12 @@
     border-radius: size(40)
     padding: size(18) size(44)
     margin-top: size(16)
+
+.hero-content-footer
+  font-weight: 400
+  margin-bottom: size(60)
+
+  > .ada-link
+    color: $light
+    font-weight: 500
+    margin: 0 size(4)

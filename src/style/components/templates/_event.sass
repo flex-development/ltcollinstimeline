@@ -4,11 +4,47 @@
 // @author Lexus Drumgold
 // ----------------------------------------------------------------------------
 
+// Variables
+
+/// Event text margin
+/// @type List
+$event-text-margin: 0 0 size(7.5) 0
+
 .adt-event
   +size(max-content)
 
   background-color: $white
   margin: size(60) 0
+
+  &.feature
+    background-color: $dark
+
+    .event-connector
+      display: none
+
+    .event-content
+      border-color: $light
+
+    .event-name,
+    .event-description
+      color: $light
+
+    .event-date,
+    .event-link
+      font-size: size(13)
+
+    .event-name
+      +flex(row, center)
+
+      font-size: size(16)
+      margin: $event-text-margin
+
+      > .ada-icon
+        font-size: size(22) !important
+        margin: 0 size(5) 0 0
+
+    .event-date
+      color: $accent-light
 
 .event-connector
   +size(size(122), size(1))
@@ -23,11 +59,11 @@
   padding: size(30) size(20)
   margin: 0 auto
 
-.event-date,
-.event-description,
-.event-link,
-.event-name
-  margin: size(5) 0
+  > .ada-paragraph
+    margin: $event-text-margin
+
+  > .ada-link:last-of-type
+    margin-top: size(12)
 
 .event-date,
 .event-link
@@ -35,15 +71,12 @@
   font-size: size(12)
   font-weight: 500
 
-  margin
-
 .event-date
-  margin-top: 0
   text-transform: uppercase
 
 .event-name
   +respond-to($breakpoint-xxl, min)
-    font-size: size(20)
+    font-size: size(18)
 
 
   color: $dark
@@ -58,7 +91,18 @@
   +flex(row, center)
 
   font-style: italic
-  margin-bottom: 0
 
   > .ada-icon
-    color: $medium-gray
+    color: $light-gray
+    margin: 0 size(3) 0 0
+
+// Background image url is set dynamically
+.adt-feature
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+
+  > .ada-container
+    +flex(row, center, center)
+
+    height: 100%

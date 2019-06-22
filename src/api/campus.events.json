@@ -50,11 +50,11 @@
     },
     "img": {
       "low": {
-        "src": "./assets/images/legal01.png",
+        "src": "../assets/images/legal01.png",
         "alt": "Richard Collins killed"
       },
       "high": {
-        "src": "./assets/images/legal01@2x.png",
+        "src": "../assets/images/legal01@2x.png",
         "alt": "Richard Collins killed"
       }
     }
