@@ -1,21 +1,22 @@
 // Packages
-import { h, Component, Fragment } from 'preact'
+import { h, Component } from 'preact'
 
 // Context
 import { InitialUIState, UIContext } from './context'
 
 // Components
-import { Image, SmoothScrollButton } from './atoms'
+import { Image, Link, SmoothScrollButton } from './atoms'
 import { Header, Footer } from './organisms'
 import { Home } from './pages'
 
 // Utilities
 import {
-  handle_window_resize, handle_window_scroll, is_mobile, is_scrolled, timer
+  handle_window_resize, handle_window_scroll, is_mobile, is_scrolled
 } from '../utilities'
 
 // Images
 import logo_light from '../assets/images/logo-mini-light.png'
+import logo_red from '../assets/images/logo-mini-accent-med.png'
 
 // Style
 import '../style/app.sass'
@@ -79,47 +80,31 @@ export default class App extends Component {
       <UIContext.Provider value={{ menu_open, mobile, scrolled }}>
         <Header container sticky>
           <SmoothScrollButton class='ui-borderless ui-transparent'>
-            <Image src={logo_light} alt='DBK mini logo light' />
+            <Image src={scrolled ? logo_red : logo_light} alt='DBK mini logo' />
           </SmoothScrollButton>
 
+          {/* TODO: Add navigation */}
         </Header>
         <Home />
-        <Footer />
+        <Footer container>
+          <SmoothScrollButton class='ui-borderless ui-transparent'>
+            <Image src={logo_red} alt='DBK mini logo' />
+          </SmoothScrollButton>
+
+          <div className='footer-links'>
+            <Link href='https://dbknews.com/author/aroberts/' target='_blank'>
+              Angela Roberts
+            </Link> |
+            <Link href='https://dbknews.com/author/jatelsek/' target='_blank'>
+              Jillian Atelsek
+            </Link>
+          </div>
+        </Footer>
       </UIContext.Provider>
     )
   }
 
   // Helpers
-
-  /**
-   * Gets and transforms the event data for the timeline.
-   *
-   * @returns {object | null} Object containing campus and legal events
-   * @throws {GeneralError}
-   */
-  get_data = () => {
-    return null
-  }
-
-  /**
-   * Updates the component loading state.
-   *
-   * @returns {undefined}
-   */
-  handle_loading_progress = () => {
-    const { data, progress } = this.state
-
-    if (data) {
-      // Clear progress interval
-      timer(null, this.loading_progress)
-
-      // Update loading state
-      return this.setState({ loading: false, progress: 100 })
-    } else {
-      // Increase loading timer by 1
-      return this.setState({ loading: true, progress: progress + 1 })
-    }
-  }
 
   /**
    * Updates the component @see state.mobile property.

@@ -8,15 +8,11 @@
 .adp-home
   +size(100vw, auto)
 
-// Position header absolutely
-// Position header on top of the other content
 // Center header contents on opposite sites of the header
 // Make inner container the height of the content
-.ado-header
-  +absolute(0, null, null, 0)
-
-  z-index: 5
-
+// Decrease size of logo image
+.ado-header,
+.ado-footer
   > .ada-container
     +flex(row, center, space-between)
 
@@ -26,17 +22,23 @@
       padding: 0
 
       > .ada-image
-        +constrain(65%)
+        +constrain(60%)
+
+// Position header absolutely
+// Position header on top of the other content
+.ado-header
+  +absolute(0, null, null, 0)
+
+  z-index: 10
 
   &.ui-sticky
-    background-color: $accent-med
-    padding: size(16) 0
+    background-color: $light
+    border-bottom: $border
     position: fixed
 
     > .ada-container
-      .smooth-scroll-btn
-        > .ada-image
-          +constrain(60%)
+      // border-bottom: $border
+      padding: size(16) 0
 
 // Set hero background image
 .ado-hero
@@ -72,11 +74,36 @@
     padding: size(18) size(44)
     margin-top: size(16)
 
+.hero-content-footer,
+.footer-links
+  font-size: size(15)
+  font-weight: 300
+
+  > .ada-link
+    margin: 0 size(4)
+
 .hero-content-footer
-  font-weight: 400
   margin-bottom: size(60)
 
   > .ada-link
     color: $light
-    font-weight: 500
-    margin: 0 size(4)
+
+.ado-footer
+  background-color: $light
+
+  > .ada-container
+    border-top: $border
+
+.footer-links
+  color: $light-gray
+
+  > .ada-link
+    +event
+      color: $accent-med
+
+
+    color: $dark
+    text-align: right
+
+    &:last-of-type
+      margin-right: 0

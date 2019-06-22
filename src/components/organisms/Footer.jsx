@@ -34,14 +34,14 @@ export default class Footer extends Component {
     const style = (`ado-footer ${props.class ? props.class : ''}`).trim()
     const { id, children, container } = props
 
+    const c_props = typeof container === 'boolean'
+      ? { children } : { ...container, children }
+
     return (
       <footer id={id} class={style}>
         {
           container
-            ? <Container props={{
-              container: typeof container === 'boolean' ? {} : { ...container },
-              children: children
-            }} />
+            ? <Container {...c_props} />
             : { children }
         }
       </footer>

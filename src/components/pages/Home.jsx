@@ -52,10 +52,10 @@ export default class Home extends Component {
             <Link href='https://dbknews.com' target='_blank'>
               The Diamondback
             </Link> |
-            <Link href='https://dbknews.com' target='_blank'>
+            <Link href='https://dbknews.com/author/aroberts/' target='_blank'>
               Angela Roberts
             </Link> |
-            <Link href='https://dbknews.com' target='_blank'>
+            <Link href='https://dbknews.com/author/jatelsek/' target='_blank'>
               Jillian Atelsek
             </Link>
           </div>

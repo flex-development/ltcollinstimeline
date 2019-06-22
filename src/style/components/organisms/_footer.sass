@@ -4,8 +4,17 @@
 // @author Lexus Drumgold
 // ----------------------------------------------------------------------------
 
-// Default footer style
-// 1. Make inner container the full height of the footer
+// Variables
+$footer-height: auto
+$footer-padding: size(40) 0
+$footer-width: 100vw
+
+// Styles
+
+// Make footer full width
+// Add space on the top and bottom of footer
 .ado-footer
+  +size($footer-width, $footer-height)
+
   > .ada-container
-    height: 100%
+    padding: $footer-padding

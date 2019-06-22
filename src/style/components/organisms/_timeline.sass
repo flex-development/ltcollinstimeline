@@ -6,17 +6,20 @@
 
 // Style
 
-// Main timeline component
-// 1. Make timeline component fullsize
 .ado-timeline
-  @extend %ui-full
+  +size(100vw, max-content)
 
   background-color: $light
 
   > .ada-container
-    +flex(row, center)
+    +flex(row, center, center)
+    +relative
 
     height: 100%
+
+#timeline0
+  > .ada-container
+    justify-content: flex-start
 
 .timeline-col
   +flex(column, center, space-between)
@@ -30,6 +33,8 @@
       +flex(row-reverse, center, center)
 
 .timeline-divider
-  +constrain(size(3))
+  +absolute(0, null, null, 50%)
+  +constrain(0.125%)
 
   background-color: $light-gray
+  z-index: 7
