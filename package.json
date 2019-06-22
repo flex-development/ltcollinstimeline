@@ -5,12 +5,9 @@
   "scripts": {
     "preinstall": "rm -rf node_modules",
     "dev": "rm -rf ./build && NODE_ENV=development && preact watch --template ./src/public/index.html -p 3000",
-    "storybook": "start-storybook -c ./src/components -s ./src/assets,./build",
-    "test": "NODE_ENV=test && jest --detectOpenHandles --passWithNoTests",
     "build": "rm -rf ./build && NODE_ENV=production preact build --clean -p --no-prerender --template ./src/public/index.html",
     "now-build": "npm run build",
-    "stage": "npm test && npm run build && now-we-test serve --port=5000",
-    "deploy": "now"
+    "start": "npm run build && now"
   },
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",

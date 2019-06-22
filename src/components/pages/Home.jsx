@@ -7,8 +7,8 @@ import { Hero, Timeline } from '../organisms'
 import { FeatureEvent } from '../templates'
 
 // Event data
-import campus from '../../api/campus.events.json'
-import legal from '../../api/legal.events.json'
+import campus from '../../assets/data/campus.events.json'
+import legal from '../../assets/data/legal.events.json'
 
 /**
  * Preact component representing the homepage.
