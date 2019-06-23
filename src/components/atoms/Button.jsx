@@ -53,7 +53,7 @@ export class SmoothScrollButton extends Component {
    * @property {number} state.speed - Animation speed in milliseconds
    * @property {string} state.target - Element to scroll to the top of
    */
-  state = { speed: 750, target: 'body' }
+  state = { speed: 625, target: 'body' }
 
   /**
    * Updates the state based on the incoming props.
@@ -99,7 +99,7 @@ export class SmoothScrollButton extends Component {
     return (
       <Button
         disabled={disabled} class={style}
-        onClick={e => smooth_scroll(e, target, speed)}
+        events={{ onClick: e => smooth_scroll(e, target, speed) }}
       >
         {children}
       </Button>
