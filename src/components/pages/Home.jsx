@@ -62,7 +62,10 @@ export default class Home extends Component {
         </Hero>
         <Timeline
           id='timeline0'
-          events={{ campus: this.events(campus, 0, 2) }}
+          events={{
+            campus: this.events(campus, 0, 2),
+            legal: this.events(legal, 0, 2)
+          }}
         />
         <FeatureEvent id='feature0' class='ui-full' event={legal[0]} />
         <Timeline events={{

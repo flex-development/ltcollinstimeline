@@ -19,7 +19,11 @@
 
 #timeline0
   > .ada-container
-    justify-content: flex-start
+    // Making these events invisible becase they're placeholders ->
+    // Legal events timeline starts after May 20, 2017
+    .timeline-col.ui-right
+      > .adt-event
+        +opacity(0)
 
 .timeline-col
   +flex(column, center, space-between)
