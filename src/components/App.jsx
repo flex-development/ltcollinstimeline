@@ -1,23 +1,22 @@
 // Packages
-import { h, Component, Fragment } from 'preact'
+import { h, Component } from 'preact'
 
 // Context
-import {
-  InitialAsyncState, InitialUIState, AsyncContext, UIContext
-} from './context'
+import { InitialUIState, UIContext } from './context'
 
 // Components
-import { Image, SmoothScrollButton } from './atoms'
+import { Image, Link, SmoothScrollButton } from './atoms'
 import { Header, Footer } from './organisms'
 import { Home } from './pages'
 
 // Utilities
 import {
-  handle_window_resize, handle_window_scroll, is_mobile, is_scrolled, timer
+  handle_window_resize, handle_window_scroll, is_mobile, is_scrolled
 } from '../utilities'
 
 // Images
 import logo_light from '../assets/images/logo-mini-light.png'
+import logo_red from '../assets/images/logo-mini-accent-med.png'
 
 // Style
 import '../style/app.sass'
@@ -30,27 +29,20 @@ import '../style/app.sass'
  */
 export default class App extends Component {
   /**
-   * Id of the interval that keeps of track of data loading.
-   * @type {string | undefined}
-   * @instance
-   */
-  progress
-
-  /**
    * @namespace state - Application state
-   * @property {object | null} data - Async data
-   * @property {boolean} loading - True if data is loading
-   * @property {boolean} menu_open - True if menu is open, closed otherwise
-   * @property {boolean} mobile - True if viewport <= 768px
-   * @property {number} progress - Loading if value < 100
+   * @property {boolean} state.menu_open - If menu is open
+   * @property {boolean} state.mobile - If viewport <= 768px
+   * @property {number} state.progress - If value < 100
+   * @property {boolean} state.scrolled - If user has scrolled past 90% of the
+   * hero
    */
-  state = { ...InitialAsyncState, ...InitialUIState }
+  state = { ...InitialUIState }
 
   /**
    * Logs that the application has mounted.
    *
-   * Attaches a scroll listener to the window after user has scrolled past the
-   * 90% of hero.
+   * Attaches scroll listners that update @see App#state.mobile on resize and
+   * @see App#state.scrolled when the user scrolls the page.
    *
    * @returns {undefined}
    */
@@ -62,24 +54,16 @@ export default class App extends Component {
 
     // Attach window listener to update scroll state
     handle_window_scroll(this.handle_scroll, true)
-
-    // Start loading progress interval
-    this.loading_progress = timer(this.handle_loading_progress)
-
-    // TODO: Get event data
   }
 
   /**
-   * Component cleanup.
+   * Remove window listeners.
    *
    * @returns {undefined}
    */
   componentWillUnmount() {
-    // Remove scroll window listener
+    handle_window_resize()
     handle_window_scroll()
-
-    // Stop loading progress interval
-    timer(null, this.loading_progress)
   }
 
   /**
@@ -90,51 +74,37 @@ export default class App extends Component {
    * @returns {Fragment}
    */
   render(props, state) {
+    const { menu_open, mobile, scrolled } = state
+
     return (
-      <Fragment>
-        <Header container>
+      <UIContext.Provider value={{ menu_open, mobile, scrolled }}>
+        <Header container sticky>
           <SmoothScrollButton class='ui-borderless ui-transparent'>
-            <Image src={logo_light} alt='DBK mini logo light' />
+            <Image src={scrolled ? logo_red : logo_light} alt='DBK mini logo' />
           </SmoothScrollButton>
 
+          {/* TODO: Add navigation */}
         </Header>
         <Home />
-        <Footer />
-      </Fragment>
+        <Footer container>
+          <SmoothScrollButton class='ui-borderless ui-transparent'>
+            <Image src={logo_red} alt='DBK mini logo' />
+          </SmoothScrollButton>
+
+          <div className='footer-links'>
+            <Link href='https://dbknews.com/author/aroberts/' target='_blank'>
+              Angela Roberts
+            </Link> |
+            <Link href='https://dbknews.com/author/jatelsek/' target='_blank'>
+              Jillian Atelsek
+            </Link>
+          </div>
+        </Footer>
+      </UIContext.Provider>
     )
   }
 
   // Helpers
-
-  /**
-   * Gets and transforms the event data for the timeline.
-   *
-   * @returns {object | null} Object containing campus and legal events
-   * @throws {GeneralError}
-   */
-  get_data = () => {
-    return null
-  }
-
-  /**
-   * Updates the component loading state.
-   *
-   * @returns {undefined}
-   */
-  handle_loading_progress = () => {
-    const { data, progress } = this.state
-
-    if (data) {
-      // Clear progress interval
-      timer(null, this.loading_progress)
-
-      // Update loading state
-      return this.setState({ loading: false, progress: 100 })
-    } else {
-      // Increase loading timer by 1
-      return this.setState({ loading: true, progress: progress + 1 })
-    }
-  }
 
   /**
    * Updates the component @see state.mobile property.
@@ -142,7 +112,7 @@ export default class App extends Component {
    *
    * @returns {undefined}
    */
-  handle_resize = () => this.setState(state => ({ mobile: is_mobile() }))
+  handle_resize = () => this.setState({ mobile: is_mobile() })
 
   /**
    * Updates the component @see state.scrolled property.
@@ -152,6 +122,6 @@ export default class App extends Component {
    * @returns {undefined}
    */
   handle_scroll = () => {
-    return this.setState(state => ({ scrolled: is_scrolled('.ado-hero', 0.9) }))
+    return this.setState({ scrolled: is_scrolled('.ado-hero', 0.9) })
   }
 }

@@ -3,7 +3,7 @@ import { h, Component, createRef } from 'preact'
 
 /**
  * Preact component representing a paragraph element.
- * 
+ *
  * @extends Component
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */

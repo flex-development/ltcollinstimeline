@@ -23,7 +23,8 @@ const InitialAsyncState = { data: null, loading: true, progress: 0 }
  * @namsespace InitialUIState - Initial user interface state
  * @property {boolean} menu_open - True if menu is open, closed otherwise
  * @property {boolean} mobile - True if viewport <= 768px
- * @property {boolean} scrolled - True if user has scrolled the page
+ * @property {boolean} scrolled - True if user has scrolled past 90% of the
+ * hero
  * @exports InitialUIState
  */
 const InitialUIState = {

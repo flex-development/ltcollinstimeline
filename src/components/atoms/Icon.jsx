@@ -41,7 +41,7 @@ export default class Icon extends Component {
    * @param {string} props.id - Element id
    * @param {string} props.name - Icon name
    * @param {object} state - Component state
-   * @returns {HTMLDivElement}
+   * @returns {HTMLElement} HTML <i> element representing a Font Awesome icon
    */
   render(props, state) {
     let style = (`ada-icon ${props.class ? props.class : ''}`).trim()
@@ -51,7 +51,7 @@ export default class Icon extends Component {
     style += !icon_style || (icon_style && !icon_style.length)
       ? ' far' : ` ${icon_style}`
 
-    return <span id={id} class={`${style} ${name}`} />
+    return <i id={id} class={`${style} ${name}`} />
   }
 
   // Helpers
@@ -64,6 +64,10 @@ export default class Icon extends Component {
    * @throws {BadRequest}
    */
   get_icon_style = () => {
+    const { icon_style } = this.props
+
+    if (!icon_style) return
+
     if (!['fab', 'fal', 'far', 'fas'].includes(this.props.icon_style)) {
       throw new BadRequest('Invalid icon style.', {
         style: this.props.weight ? this.props.weight : null

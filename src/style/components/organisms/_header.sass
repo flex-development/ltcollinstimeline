@@ -5,15 +5,16 @@
 // ----------------------------------------------------------------------------
 
 // Variables
-$header-height: size(190)
+$header-height: auto
 $header-padding: size(40) 0
 $header-width: 100vw
 
 // Styles
 
-// Set width 100vw and height (190 / 16)rem
+// Make header full width
 // Add space on the top and bottom of header
 .ado-header
   +size($header-width, $header-height)
 
-  padding: $header-padding
+  > .ada-container
+    padding: $header-padding

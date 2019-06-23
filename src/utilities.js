@@ -22,7 +22,7 @@ export const handle_window_resize = (fn = null, on = false) => {
   // Check if resize function exists. If so, attach listener
   if (on && !fn) throw new GeneralError('Resize function is required.', { on })
 
-  /*
+  /**
    * Remove scroll window listener if @see @param on is false,
    * or attach the listener
    */
@@ -135,7 +135,7 @@ export const is_scrolled = (selector, value, target = window) => {
  * @returns {undefined}
  */
 export const smooth_scroll = (event, target = 'body', speed = 750) => {
-  $('html, body').animate({ scrollTop: $(target) }, speed)
+  $('html, body').animate({ scrollTop: $(target).offset().top }, speed)
   if (process.env.NODE_ENV !== 'production') console.info('Smooth scrolled.')
   event.preventDefault()
 }

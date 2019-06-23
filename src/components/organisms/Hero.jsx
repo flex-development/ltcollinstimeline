@@ -10,7 +10,7 @@ import { Container } from '../atoms'
  * @extends Component
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
-export default class Footer extends Component {
+export default class Hero extends Component {
   /**
    * Renders a hero section with the base class 'ado-hero'.
    *
