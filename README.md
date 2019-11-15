@@ -30,7 +30,7 @@ accepted.
 To view the project in a production Node environment, run `npm start`.
 
 To add, edit, or remove event data, edit [`campus.events.json`][1] or
-[`legal.events.json`][2]. Both are located under the [`/src/api/data`][3] directory.
+[`legal.events.json`][2] under the [`/src/api/data`][3] directory.
 
 ## Built With
 
