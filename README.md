@@ -10,8 +10,8 @@ waiting for his Uber.
 
 [Getting Started](#getting-started)  
 [Usage](#usage)  
-[Contributing](#contributing)  
-[Deployment](#deployment)  
+[Contributing](./docs/CONTRIBUTING.md)  
+[Deployment](./docs/DEPLOYMENT.md)  
 [Built With](#built-with)
 
 ## Getting Started
