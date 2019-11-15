@@ -1,7 +1,9 @@
 {
-  "version": 2,
   "name": "ltcollinstimeline",
+  "version": 2,
   "public": true,
+  "alias": "ltcollinstimeline",
+  "scope": "flexdevelopment",
   "builds": [
     {
       "src": "package.json",
@@ -11,30 +13,16 @@
       }
     }
   ],
+  "regions": [
+    "iad1"
+  ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)\\.(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
-      "dest": "/$1.$2.$3.$4.$5"
-    },
-    {
-      "src": "/(.*)\\.(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
-      "dest": "/$1.$2.$3.$4"
-    },
-    {
-      "src": "/(.*)\\.(.*)\\.(js|css|json|ttf|map)$",
-      "dest": "/$1.$2.$3"
-    },
-    {
-      "src": "/(.*)\\.(js|css|json|ttf|map|png|ico|json)$",
-      "dest": "/$1.$2"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/repo",
+      "status": 301,
+      "headers": {
+        "Location": "https://github.com/flex-development/ltcollinstimeline"
+      }
     }
   ]
 }

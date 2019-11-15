@@ -1,10 +1,12 @@
 // Components
-import Event, { FeatureEvent } from './Event'
+import Event from './Event'
+import Events from './Events'
+import FeatureEvent from './FeatureEvent'
 
 /**
  * @file JSX Templates
  * @see {@link http://atomicdesign.bradfrost.com/chapter-2/}
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * @author Lexus Drumgold <lex@flexdevelopment.llc>
  */
 
-export { FeatureEvent, Event }
+export { Event, Events, FeatureEvent }

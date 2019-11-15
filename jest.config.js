@@ -12,15 +12,20 @@ module.exports = {
     'jsx'
   ],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/tests/__mocks__/fileMock.js',
-    '\\.(css|less|scss)$': 'identity-obj-proxy',
-    '^./style$': 'identity-obj-proxy',
-    '^preact$': '<rootDir>/node_modules/preact/dist/preact.min.js'
+    '^react-native$': 'react-native-web',
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy'
+  },
+  roots: [
+    '<rootDir>'
+  ],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest'
   },
   testPathIgnorePatterns: [
     '/node_modules/',
-    '<rootDir>/tests/__mocks__/*'
+    '<rootDir>/tests/__mocks__/*',
+    '<rootDir>/tests/__snaps__/*'
   ],
-  testRegex: '(/(__tests__|tests)/.*|(\\.|/)(test|spec))\\.jsx?$',
+  testURL: 'http://localhost:3000',
   verbose: true
 }

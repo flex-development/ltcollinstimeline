@@ -1,0 +1,165 @@
+// ----------------------------------------------------------------------------
+// Event page specific styles, variables, placeholders, mixins and functions
+// @see components/templates/Event.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Variables
+
+/// Event text margin
+/// @type List
+$event-text-margin: 0 0 size(7.5) 0
+
+// Styles
+
+.adt-event
+  +respond-to($breakpoint-schmedium)
+    +constrain(100%)
+
+    margin: size(12) 0
+
+
+  +size(max-content)
+
+  background-color: $white
+  margin: size(60) 0
+  z-index: 5
+
+  &.feature
+    background-color: $dark
+
+    .event-connector
+      display: none
+
+    .event-content
+      border-color: $light
+
+    .event-name,
+    .event-blurb
+      color: $light
+
+    .event-date,
+    .event-headline
+      font-size: size(13)
+
+    .event-name
+      +flex(row, center)
+
+      font-size: size(16)
+      margin: $event-text-margin
+
+      > .ada-icon
+        font-size: size(22) !important
+        margin: 0 size(5) 0 0
+
+    .event-date
+      color: $accent-light
+
+.event-connector
+  +respond-to($breakpoint-schmedium)
+    display: none
+    opacity: 0
+
+
+  +respond-to(size(1300px))
+    width: size(70)
+
+
+  +size(size(50), size(1))
+
+  border-top: $border
+
+.event-content
+  +respond-to($breakpoint-schmedium)
+    +constrain(100%)
+
+
+  +respond-to($breakpoint-xxl, min)
+    width: size(575)
+
+
+  +size(size(450), auto)
+
+  border: size(3) solid $black
+  margin: 0 auto
+  padding: size(30) size(20)
+
+  > .ada-paragraph
+    margin: $event-text-margin
+
+  > .ada-link:last-of-type
+    margin-top: size(12)
+
+.event-content-header
+  +flex(row, center, flex-start)
+
+.event-date,
+.event-type
+  font-weight: 600
+
+.event-date,
+.event-type
+  +respond-to($breakpoint-xxl, min)
+    font-size: size(16)
+
+
+  color: $accent-med
+  font-size: size(14)
+  text-transform: uppercase
+
+.event-type
+  color: $dark
+  margin-right: size(8)
+
+.event-name
+  +respond-to($breakpoint-xxl, min)
+    font-size: size(18)
+
+
+  color: $dark
+  font-size: size(16)
+  font-weight: 600
+
+.event-blurb
+  +respond-to($breakpoint-xxl, min)
+    font-size: size(17)
+
+
+  color: $gray
+  font-size: size(14)
+
+.event-headline
+  +flex(row, center)
+
+  font-size: size(15)
+  font-style: italic
+  font-weight: 500
+
+  > .ada-icon
+    color: $light-gray
+    margin: 0 size(3) 0 0
+
+// Background image url is set dynamically
+.adt-feature
+  +respond-to($breakpoint-schmedium)
+    height: 50vh
+
+
+  +size(100vw, 100vh)
+
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  margin: size(12) 0
+
+  > .ada-container
+    +flex(row, center, center)
+
+    height: 100%
+
+  .adt-event
+    margin: 0 !important
+
+    .event-connector
+      display: none
+      opacity: 0
