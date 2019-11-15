@@ -34,8 +34,8 @@ To add, edit, or remove event data, edit [`campus.events.json`][1] or
 
 ## Built With
 
-- [Adobe XD][1] - Software for designing and prototyping user experiences
-- [React][2] - JavaScript library for building user interfaces
+- [Adobe XD][4] - Software for designing and prototyping user experiences
+- [React][5] - JavaScript library for building user interfaces
 
 [1]: ./src/api/data/campus.events.json
 [2]: ./src/api/data/campus.events.json
