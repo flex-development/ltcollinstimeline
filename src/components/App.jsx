@@ -1,59 +1,95 @@
 // Packages
-import { h, Component } from 'preact'
+import React, { Component } from 'react'
+import $ from 'jquery'
 
 // Context
-import { InitialUIState, UIContext } from './context'
+import { UIContext } from './context'
 
 // Components
-import { Image, Link, SmoothScrollButton } from './atoms'
-import { Header, Footer } from './organisms'
-import { Home } from './pages'
-
-// Utilities
-import {
-  handle_window_resize, handle_window_scroll, is_mobile, is_scrolled
-} from '../utilities'
-
-// Images
-import logo_light from '../assets/images/logo-mini-light.png'
-import logo_red from '../assets/images/logo-mini-accent-med.png'
-
-// Style
-import '../style/app.sass'
+import { SiteHeader, SiteHero, SiteFooter, Timeline } from './organisms'
+// import { Error, Loading } from './screens'
 
 /**
- * Preact component representing the application.
+ * Component representing the web application.
  *
  * @extends Component
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * @author Lexus Drumgold <lex@flexdevelopment.llc>
  */
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+
+    /**
+     * @property {object} state - Application state
+     * @property {object | null} state.data - Event data
+     * @property {object[] | undefined} state.data.campus - Campus events
+     * @property {object[] | undefined} state.data.legal - Legal events
+     * @property {FeathersError | null} state.error - Current error
+     * @property {object} state.info - Error information
+     * @property {boolean} state.menu - If menu is open
+     * @property {boolean} state.mobile - If viewport <= 768px
+     * @property {boolean} state.near_bottom - If user has scrolled within 100px
+     * of the bottom of the page
+     * @property {boolean} state.scrolled - If user has scrolled past 90% of the
+     * hero
+     */
+    this.state = {
+      data: null,
+      error: null,
+      info: null,
+      loading: true,
+      menu: false,
+      mobile: false,
+      near_bottom: false,
+      scrolled: false
+    }
+  }
+
   /**
-   * @namespace state - Application state
-   * @property {boolean} state.menu_open - If menu is open
-   * @property {boolean} state.mobile - If viewport <= 768px
-   * @property {number} state.progress - If value < 100
-   * @property {boolean} state.scrolled - If user has scrolled past 90% of the
-   * hero
+   * Updates the internal @see @class App state based on @see @param props .
+   *
+   * @param {object} props - Incoming props
+   * @param {object} state - Current state
+   * @returns {object | null}
    */
-  state = { ...InitialUIState }
+  static getDerivedStateFromProps(props, state) {
+    const { is_mobile, is_scrolled, near_bottom } = props
+
+    return {
+      mobile: is_mobile(),
+      near_bottom: near_bottom(),
+      scrolled: is_scrolled('.ado-hero', 0.9)
+    }
+  }
+
+  /**
+   * If an error is caught, the component's internal error state will be
+   * updated. Afterwards, the error will be logged with the prefix '!TV-ERR =>'.
+   *
+   * @param {Error | FeathersError} error - Current error
+   * @param {object} info - Error information
+   * @returns {undefined}
+   */
+  componentDidCatch(error, info) {
+    this.error(error, info)
+  }
 
   /**
    * Logs that the application has mounted.
    *
-   * Attaches scroll listners that update @see App#state.mobile on resize and
-   * @see App#state.scrolled when the user scrolls the page.
+   * The application will fetch the current event data from the database.
+   * Afterwards, window listeners will be attached to update the internal mobile
+   * state, as well as check the user's scroll position.
    *
+   * @async
    * @returns {undefined}
    */
-  componentDidMount() {
+  async componentDidMount() {
     console.info('Application mounted.')
 
-    // Attach window listener to update mobile state
-    handle_window_resize(this.handle_resize, true)
-
-    // Attach window listener to update scroll state
-    handle_window_scroll(this.handle_scroll, true)
+    // Attach window listeners to update ui states
+    this.resize(true)
+    this.scroll(true)
   }
 
   /**
@@ -62,44 +98,26 @@ export default class App extends Component {
    * @returns {undefined}
    */
   componentWillUnmount() {
-    handle_window_resize()
-    handle_window_scroll()
+    this.resize()
+    this.scroll()
   }
 
   /**
-   * Renders the application.
+   * Renders the website.
    *
    * @param {object} props - Component properties
    * @param {object} state - Component state
    * @returns {Fragment}
    */
-  render(props, state) {
-    const { menu_open, mobile, scrolled } = state
+  render() {
+    const { menu_open, mobile, near_bottom, scrolled } = this.state
 
     return (
-      <UIContext.Provider value={{ menu_open, mobile, scrolled }}>
-        <Header container sticky>
-          <SmoothScrollButton class='ui-borderless ui-transparent'>
-            <Image src={scrolled ? logo_red : logo_light} alt='DBK mini logo' />
-          </SmoothScrollButton>
-
-          {/* TODO: Add navigation */}
-        </Header>
-        <Home />
-        <Footer container>
-          <SmoothScrollButton class='ui-borderless ui-transparent'>
-            <Image src={logo_red} alt='DBK mini logo' />
-          </SmoothScrollButton>
-
-          <div className='footer-links'>
-            <Link href='https://dbknews.com/author/aroberts/' target='_blank'>
-              Angela Roberts
-            </Link> |
-            <Link href='https://dbknews.com/author/jatelsek/' target='_blank'>
-              Jillian Atelsek
-            </Link>
-          </div>
-        </Footer>
+      <UIContext.Provider value={{ menu_open, mobile, near_bottom, scrolled }}>
+        <SiteHeader />
+        <SiteHero />
+        <Timeline mobile={mobile} />
+        <SiteFooter />
       </UIContext.Provider>
     )
   }
@@ -107,21 +125,51 @@ export default class App extends Component {
   // Helpers
 
   /**
-   * Updates the component @see state.mobile property.
-   * If the window width is <= 768px, @see state.mobile will be true.
+   * Logs the error and updates the internal error state.
    *
+   * @param {FeathersError | Error} error - Exception that was thrown
+   * @param {object} info - Error infomation
    * @returns {undefined}
    */
-  handle_resize = () => this.setState({ mobile: is_mobile() })
+  error = (error, info = null) => {
+    info = (info || error.stack) || null
+
+    console.error(error.message, info)
+    return this.setState({ error, info })
+  }
 
   /**
-   * Updates the component @see state.scrolled property.
-   * If the user has scrolled past 90% of the header, @see state.scrolled will
-   * be true.
+   * Updates the internal ui state. When the window is being resized, the
+   * internal mobile state will be true if the window width is <= 768px.
    *
    * @returns {undefined}
    */
-  handle_scroll = () => {
-    return this.setState({ scrolled: is_scrolled('.ado-hero', 0.9) })
+  resize = listen => {
+    if (listen) {
+      const { is_mobile } = this.props
+
+      $(window).resize(() => this.setState({ mobile: is_mobile() }))
+    } else {
+      $(window).off('scroll')
+    }
+  }
+
+  /**
+   * Updates the internal ui state. After scrolling, the method will check if
+   * the user has scrolled passed 90% of the header and if the user is near the
+   * bottom of the page.
+   *
+   * @returns {undefined}
+   */
+  scroll = listen => {
+    if (listen) {
+      const { is_scrolled, near_bottom } = this.props
+
+      $(window).scroll(() => this.setState({
+        near_bottom: near_bottom(), scrolled: is_scrolled('.ado-hero', 0.9)
+      }))
+    } else {
+      $(window).off('resize')
+    }
   }
 }

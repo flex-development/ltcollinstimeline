@@ -1,32 +1,77 @@
 // Packages
-import { h, Component, createRef } from 'preact'
+import React from 'react'
 
 /**
- * Preact component representing a paragraph element.
- *
- * @extends Component
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * @file Components representing a <p> element.
+ * @author Lexus Drumgold <lex@flexdevelopment.llc>
  */
-export default class Paragraph extends Component {
-  /**
-   * Paragraph reference.
-   *
-   * @type {RefObject<any>}
-   * @instance
-   */
-  paragraph = createRef()
 
-  /**
-   * Renders a paragraph element with the base class 'ada-paragraph'.
-   *
-   * @param {object} props - Component properties
-   * @param {object} state - Component state
-   * @returns {HTMLParagraphElement}
-   */
-  render(props, state) {
-    const style = (`ada-paragraph ${props.class ? props.class : ''}`).trim()
-    const { id, children } = props
+/**
+ * Renders a paragraph element with the base class 'ada-paragraph'.
+ *
+ * @param {object} props - Component properties
+ * @param {*} props.children - Child elements to render
+ * @param {string} props.className - Space delimitted list of extra classes
+ * @param {string} props.id - Element id
+ * @param {object | undefined} state - Component state
+ * @param {object | undefined} context - Component context
+ * @returns {HTMLParagraphElement}
+ */
+const Paragraph = props => {
+  const { className, children, id, graph } = props
+  const style = (`ada-paragraph ${className || ''}`).trim()
 
-    return <p ref={this.paragraph} id={id} class={style}>{children}</p>
-  }
+  return (
+    <p
+      id={id} className={style} dangerouslySetInnerHTML={{
+        __html: graph || children
+      }}
+    />
+  )
 }
+
+/**
+ * Component representing an article author.
+ *
+ * @param {object} param0 - Component properties
+ * @param {string} param0.author - Article author
+ * @returns {<Paragraph>}
+ */
+const Author = ({ author }) => (
+  <Paragraph className='author'>{author}</Paragraph>
+)
+
+/**
+ * Component representing an article blurb.
+ *
+ * @param {object} param0 - Component properties
+ * @param {string} param0.blurb - Article blurb
+ * @returns {<Paragraph>}
+ */
+const Blurb = ({ blurb }) => (
+  <Paragraph className='blurb'>{blurb}</Paragraph>
+)
+
+/**
+ * Component representing an article category.
+ *
+ * @param {object} param0 - Component properties
+ * @param {string} param0.category - Article category
+ * @returns {<Paragraph>}
+ */
+const Category = ({ category }) => (
+  <Paragraph className='category'>{category}</Paragraph>
+)
+
+/**
+ * Component representing a subheading.
+ *
+ * @param {object} param0 - Component properties
+ * @param {string} param0.headline - Subheading
+ * @returns {<Paragraph>}
+ */
+const Subheading = ({ heading }) => (
+  <Paragraph className='subheading'>{heading}</Paragraph>
+)
+
+export { Paragraph as default, Author, Blurb, Category, Subheading }

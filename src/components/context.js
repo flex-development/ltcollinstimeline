@@ -1,11 +1,15 @@
 // Packages
-import { createContext } from 'preact'
-import $ from 'jquery'
+import { createContext } from 'react'
+
+// Utilities
+import utils from '../utils'
+
+const { is_scrolled, near_bottom } = utils
 
 /**
  * @file Context configuration
  * @module context
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * @author Lexus Drumgold <lex@flexdevelopment.llc>
  * @see
  * {@link https://reactjs.org/docs/context.html#consuming-multiple-contexts}
  */
@@ -22,15 +26,18 @@ const InitialAsyncState = { data: null, loading: true, progress: 0 }
 /**
  * @namsespace InitialUIState - Initial user interface state
  * @property {boolean} menu_open - True if menu is open, closed otherwise
- * @property {boolean} mobile - True if viewport <= 768px
- * @property {boolean} scrolled - True if user has scrolled past 90% of the
+ * @property {boolean} mobile - If viewport <= 768px
+ * @property {boolean} near_bottom - If user has scrolled within 100px of the
+ * bottom of the page
+ * @property {boolean} scrolled - If user has scrolled past 90% of the
  * hero
  * @exports InitialUIState
  */
 const InitialUIState = {
   menu_open: false,
   mobile: false,
-  scrolled: $(window).scrollTop() >= $('.ado-hero').outerHeight() * 0.9
+  near_bottom: near_bottom(),
+  scrolled: is_scrolled('.ado-hero', 0.9)
 }
 
 const AsyncContext = createContext(InitialAsyncState)

@@ -1,112 +1,106 @@
 // Packages
-import { h, Component } from 'preact'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage, faLink } from '@fortawesome/free-solid-svg-icons'
+import React, { Component } from 'react'
 import $ from 'jquery'
 
 // Components
-import { Container, Link, Paragraph } from '../atoms'
+import { ImageIcon, Link, LinkIcon, Paragraph } from '../atoms'
 
 /**
  * Class representing a timeline event.
  *
  * @extends Component
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * @author Lexus Drumgold <lex@flexdevelopment.llc>
  */
 export default class Event extends Component {
   /**
+   * Creates a new event component.
+   *
+   * @todo Update documentation
+   *
+   * @constructor
+   * @param {object} props - Component properties
+   * @returns {Event}
+   */
+  constructor(props) {
+    super(props)
+
+    /**
+     * @property {object} state - Component state
+     * @property {object | null} state.img - Event image
+     * @property {string} state.style - Component classes
+     */
+    this.state = { img: null, style: 'adt-event' }
+  }
+
+  /**
+   * The component image and style state will be updated based on the incoming
+   * properties, represented by @see @param props .
+   *
+   * @param {object} props - @see @constructor
+   * @param {object} state - @see @constructor
+   */
+  static getDerivedStateFromProps(props, state) {
+    const { className, img } = props
+
+    return {
+      img: img.src && img.src.trim().length > 0 ? img : null,
+      style: (`adt-event ${className || ''}`).trim()
+    }
+  }
+
+  /**
    * Renders an <div> element with the base class 'adt-event'.
    *
-   * @param {object} props - Component properties
-   * @param {string} props.class - Space delimitted list of extra classes
-   * @param {string} props.description - Event description
-   * @param {boolean} props.feature - True if feature event
-   * @param {string} props.id - Element id
-   * @param {object} props.img - Object containing <img> element properties or
-   * keys 'low' and 'high' with corressponding <img> element properties
-   * @param {object} props.link - Object containing <a> element properties
-   * @param {string} props.name - Event name
-   * @param {string} props.type - Event type
-   * @param {object} state - Component state
    * @returns {HTMLDivElement}
    */
   render(props, state) {
-    const style = (`adt-event ${props.class ? props.class : ''}`).trim()
-    const { date, description, feature, id, img, link, name, type } = props
+    const { blurb, date, feature, headline, id, name, type } = this.props
+    const { img, style } = this.state
 
-    const get_class = string => string ? `event-${string}` : ''
-
-    const image = img ? (img.low || img).src : null
-
-    if (image) {
-      $(`#${id} > .event-content`).css({
-        backgroundImage: `url('${image}')`
-      })
+    // Update background image
+    if (img) {
+      const element = `#${id} > .event-content`
+      $(element).css({ backgroundImage: `url('${img.src}')` })
     }
 
     return (
-      <div id={id} class={style} data-type={type}>
-        <article class={get_class('content')}>
-          <Paragraph class={get_class('date')}>{date}</Paragraph>
-          {
-            feature || image
-              ? (
-                <Link class={get_class('name')} href={image} target='_blank'>
-                  <FontAwesomeIcon className='ada-icon' icon={faImage} /> {name}
-                </Link>
-              )
-              : (
-                <Paragraph class={get_class('name')}>
-                  {name}
-                </Paragraph>
-              )
-          }
-          <Paragraph class={get_class('description')}>
-            {description}
-          </Paragraph>
-          <Link class={get_class('link')} {...link}>
-            <FontAwesomeIcon className='ada-icon' icon={faLink} /> {link.text}
+      <article id={id} className={style} data-type={type}>
+        <div className='event-content'>
+          <div className='event-content-header'>
+            <Paragraph className='event-type'>{type}</Paragraph>
+            <Paragraph className='event-date'>{date}</Paragraph>
+          </div>
+          <EventName feature={feature} image={img} name={name} />
+          <Paragraph className='event-blurb' graph={blurb} />
+          <Link className='event-headline' {...headline}>
+            <LinkIcon /> {headline.text}
           </Link>
-        </article>
-        <div class={get_class('connector')} data-event={id} />
-      </div>
+        </div>
+        <div className='event-connector' data-event={id} />
+      </article>
     )
   }
 }
 
 /**
- * Class representing the feature event.
+ * For feature events or events with images, the name of the event will be
+ * rendered with an image icon to its left. The icon and text will be a link
+ * that opens the image in a new tab.
  *
- * @extends Component
- * @author Lexus Drumgold <lex@lexusdrumgold.design>
+ * Otherwise, the event name will be rendered as paragraph.
+ *
+ * @returns {<Link> | <Paragraph>}
  */
-export class FeatureEvent extends Component {
-  /**
-   * Renders a feature event section with the base class 'adt-feature'.
-   *
-   *
-   * @param {object} props - Component properties
-   * @param {string} props.class - Space delimitted list of extra classes
-   * @param {string} props.id - Element id
-   * @param {object} props.event - Event data @see Event#render
-   * @param {object} state - Component state
-   * @returns {HTMLElement} HTML section element
-   */
-  render(props, state) {
-    let style = (`adt-feature ${props.class ? props.class : ''}`).trim()
-    const { event, id } = props
+const EventName = props => {
+  const { image, name } = props
 
-    const feature_event = { ...event, img: {} }
-    const feature_image = event.img.low || event.img
-
-    $(`#${id}`).css({ backgroundImage: `url('${feature_image.src}')` })
-
+  if (image) {
     return (
-      <section id={id} class={style}>
-        <Container>
-          <Event class='feature' {...feature_event} />
-        </Container>
-      </section>
+      <Link className='event-name' href={image.src} target='_blank'>
+        <ImageIcon /> {name}
+      </Link>
     )
   }
+
+  return <Paragraph className='event-name' graph={name} />
 }

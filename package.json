@@ -1,92 +1,79 @@
 {
-  "name": "@dbklab/ltcollinstimeline",
+  "name": "@flexdevelopment/ltcollinstimeline",
+  "description": "Timeline highlighting the events leading up to the death of 2nd Lt. Richard Collins, who was stabbed to death on the University of Maryland's campus while waiting for his Uber. Two years later, former student Sean Urbanski is is awaiting trial on hate crime and murder charges in connection Collins' death. The timeline also highlights what the University has done since the Lieutenant's untimely passing to address campus hate crimes and promote an environment where students of all backgrounds feel safe and accepted.",
   "version": "1.0.0",
-  "description": "On the night of May 19, 2017, two days away from graduation, 2nd Lt. Richard Collins was stabbed to death on the University of Maryland's campus while waiting for his Uber. Two years later, former student Sean Urbanski is is awaiting trial on hate crime and murder charges in connection Collins' death, and is set is to go to trial July 22nd, 2019. Even before Collins' death, racial tensions have been high at the University, with several hate crimes dirtying the University's history. The Lt. Collins Timeline is a special project created with the goal of highlighting not only the events leading up to the Lieutenant's death, but what the University has done since his untimely passing to address campus hate crimes and promote an environment where students of all backgrounds feel safe and accepted. Moreover, we'd like to emphasize how tragic Collins' death is, and just how ostracized students of color on UMD's campus feel.",
+  "author": "Flex Development, LLC <support@flexdevelopment.llc>",
   "scripts": {
-    "preinstall": "rm -rf node_modules",
-    "dev": "rm -rf ./build && NODE_ENV=development && preact watch --template ./src/public/index.html -p 3000",
-    "build": "rm -rf ./build && NODE_ENV=production preact build --clean -p --no-prerender --template ./src/public/index.html",
+    "preinstall": "rm -rf node_modules && npm run prebuild",
+    "lint": "eslint ./src/*.js ./src/**/*.js ./src/components/**/*.jsx --fix",
+    "predev": "NODE_ENV=development cp .env.development .env",
+    "dev": "react-scripts start",
+    "postdev": "rm -rf .env",
+    "prebuild": "rm -rf build/",
+    "build": "react-scripts build",
     "now-build": "npm run build",
-    "start": "npm run build && now"
+    "prestart": "NODE_ENV=production npm run lint && npm run build",
+    "start": "serve ./build",
+    "poststart": "rm -rf .env"
   },
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flex-development/ltcollinstimeline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flex-development/ltcollinstimeline/issues"
+  },
+  "keywords": [
+    "react",
+    "sass"
+  ],
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "jquery": "^3.4.1",
-    "preact": "^10.0.0-beta.2",
-    "preact-cli-plugin-env-vars": "^1.2.1"
+    "moment": "^2.24.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-ga": "^2.6.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "showdown": "^1.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
-    "@storybook/preact": "^5.1.1",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^11.0.0-beta.0",
-    "babel-jest": "^24.7.1",
-    "babel-loader": "^8.0.6",
-    "eslint": "^5.16.0",
+    "babel-jest": "^24.9.0",
+    "concurrently": "^4.1.2",
+    "eslint": "^6.2.1",
     "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-preact": "^1.1.6",
-    "eslint-config-synacor": "^2.0.2",
+    "eslint-config-standard-jsx": "^7.0.0",
+    "eslint-config-standard-react": "^9.0.0",
     "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-standard": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
+    "eslint-watch": "^6.0.0",
+    "firebase-tools": "^7.1.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.7.1",
-    "node-sass": "4.11.0",
-    "now": "^15.0.8",
-    "preact-cli": "3.0.0-next.19",
-    "preact-render-spy": "^1.2.1",
-    "sass-loader": "7.1.0"
+    "node-sass": "^4.12.0",
+    "react-axe": "^3.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/The-Diamondback-Lab/ltcollinstimeline.git"
-  },
-  "keywords": [
-    "firebase",
-    "google firebase",
-    "now",
-    "preact",
-    "sass",
-    "zeit now"
-  ],
-  "author": "Lexus Drumgold <lex@lexusdrumgold.design> (https://lexusdrumgold.design)",
-  "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/The-Diamondback-Lab/ltcollinstimeline/issues"
-  },
-  "homepage": "https://github.com/The-Diamondback-Lab/ltcollinstimeline#readme",
   "browserslist": [
     ">1%",
     "last 4 versions",
     "Firefox ESR",
     "not ie < 11"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "plugin:jest/recommended",
-      "standard",
-      "standard-preact"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    },
-    "rules": {
-      "camelcase": 0,
-      "space-before-function-paren": 0
-    }
-  },
-  "eslintIgnore": [
-    "build/*"
   ]
 }

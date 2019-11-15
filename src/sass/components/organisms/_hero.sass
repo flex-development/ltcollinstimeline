@@ -1,0 +1,97 @@
+// ----------------------------------------------------------------------------
+// Hero specific styles, variables, placeholders, mixins and functions
+// @see components/organisms/Hero.jsx
+// @author Lexus Drumgold
+// ----------------------------------------------------------------------------
+
+// Variables
+$hero-height: 100vh
+$hero-image: '#{$base-url}/images/hero.png'
+$hero-width: 100vw
+$widescreen-hero-height: size(900)
+
+// Styles
+
+// Set width and height
+// Adjust height on larger screens
+.ado-hero
+  +size($hero-width, $hero-height)
+  +respond-to($breakpoint-xxl, min)
+    height: $widescreen-hero-height
+
+
+  background-color: $dark
+  background-image: url($hero-image)
+
+  > .ada-container
+    +flex(row, flex-end, center)
+
+    height: 100%
+
+// Target heading, paragraph, and button inside hero
+
+.hero-content
+  +flex(column, center, flex-end)
+  +respond-to($breakpoint-schmedium)
+    +size(100%)
+
+    justify-content: flex-end
+
+
+  +size(50%, 100%)
+
+.hero-content-main,
+.hero-content-footer
+  color: $white
+  text-align: center
+
+.hero-content-main
+  +flex(column, center, center)
+  +respond-to($breakpoint-schmedium)
+    font-size: size(16)
+
+
+  +respond-to($breakpoint-small)
+    font-size: size(14)
+
+
+  color: $white
+  margin-bottom: 18.75%
+  text-align: center
+
+  > .ada-paragraph
+    font-size: size(20)
+
+  > .smooth-scroll-btn
+    +set-bkg-color-and-hover($accent-med)
+
+    border-radius: size(40)
+    color: $white
+    margin-top: size(16)
+    padding: size(18) size(44)
+
+.hero-content-footer
+  +respond-to($breakpoint-schmedium)
+    margin-top: size(150)
+
+
+  +respond-to($breakpoint-small)
+    font-size: size(12)
+
+
+  font-size: size(15)
+  font-weight: 300
+  margin: size(60) 0
+
+  > .ada-link
+    +respond-to($breakpoint-xxl, min)
+      font-size: size(20)
+
+
+    +respond-to($breakpoint-xxxl, min)
+      font-size: size(22)
+
+
+    color: $light
+    font-size: size(18)
+    margin: 0 size(4)
